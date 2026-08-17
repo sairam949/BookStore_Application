@@ -150,7 +150,7 @@ const App = () => {
 
     switch (activeTab) {
       case 'dashboard':
-        return <Dashboard stats={dashboardStats} {...commonProps} />;
+        return <Dashboard stats={dashboardStats} setActiveTab={setActiveTab} {...commonProps} />;
       case 'inventory':
         return <Inventory {...commonProps} />;
       case 'sales':
@@ -164,7 +164,7 @@ const App = () => {
       case 'settings':
         return <Settings {...commonProps} />;
       default:
-        return <Dashboard stats={dashboardStats} {...commonProps} />;
+        return <Dashboard stats={dashboardStats} setActiveTab={setActiveTab} {...commonProps} />;
     }
   };
 
