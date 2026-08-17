@@ -21,75 +21,75 @@ const App = () => {
 
   // Global state for data
   const [books, setBooks] = useState([
-    { 
-      id: 1, 
-      title: "The Great Gatsby", 
-      author: "F. Scott Fitzgerald", 
-      isbn: "978-0-7432-7356-5", 
-      category: "Fiction", 
-      price: 12.99, 
-      stock: 25, 
-      location: "A1-B2", 
+    {
+      id: 1,
+      title: "The Great Gatsby",
+      author: "F. Scott Fitzgerald",
+      isbn: "978-0-7432-7356-5",
+      category: "Fiction",
+      price: 12.99,
+      stock: 25,
+      location: "A1-B2",
       supplier: "Penguin Books",
       description: "A classic American novel"
     },
-    { 
-      id: 2, 
-      title: "To Kill a Mockingbird", 
-      author: "Harper Lee", 
-      isbn: "978-0-06-112008-4", 
-      category: "Fiction", 
-      price: 15.99, 
-      stock: 30, 
-      location: "A2-C1", 
+    {
+      id: 2,
+      title: "To Kill a Mockingbird",
+      author: "Harper Lee",
+      isbn: "978-0-06-112008-4",
+      category: "Fiction",
+      price: 15.99,
+      stock: 30,
+      location: "A2-C1",
       supplier: "HarperCollins",
       description: "A gripping tale of racial injustice"
     },
-    { 
-      id: 3, 
-      title: "1984", 
-      author: "George Orwell", 
-      isbn: "978-0-452-28423-4", 
-      category: "Fiction", 
-      price: 18.99, 
-      stock: 8, 
-      location: "B1-A3", 
+    {
+      id: 3,
+      title: "1984",
+      author: "George Orwell",
+      isbn: "978-0-452-28423-4",
+      category: "Fiction",
+      price: 18.99,
+      stock: 8,
+      location: "B1-A3",
       supplier: "Random House",
       description: "A dystopian social science fiction novel"
     }
   ]);
 
   const [customers, setCustomers] = useState([
-    { 
-      id: 1, 
-      name: "John Smith", 
-      email: "john.smith@email.com", 
-      phone: "(555) 123-4567", 
-      type: "Premium", 
-      totalPurchases: 234.50, 
+    {
+      id: 1,
+      name: "John",
+      email: "[EMAIL_ADDRESS]",
+      phone: "(555) 123-4567",
+      type: "Premium",
+      totalPurchases: 234.50,
       lastVisit: "2025-09-18",
       address: "123 Main St, City"
     },
-    { 
-      id: 2, 
-      name: "Sarah Johnson", 
-      email: "sarah.j@email.com", 
-      phone: "(555) 987-6543", 
-      type: "Student", 
-      totalPurchases: 89.30, 
+    {
+      id: 2,
+      name: "Sarah Johnson",
+      email: "sarah.j@email.com",
+      phone: "(555) 987-6543",
+      type: "Student",
+      totalPurchases: 89.30,
       lastVisit: "2025-09-15",
       address: "456 College Ave, University"
     }
   ]);
 
   const [suppliers, setSuppliers] = useState([
-    { 
-      id: 1, 
-      company: "Penguin Books", 
-      contact: "Alice Brown", 
-      email: "alice@penguin.com", 
-      phone: "(555) 111-2222", 
-      rating: 5, 
+    {
+      id: 1,
+      company: "Penguin Books",
+      contact: "Alice Brown",
+      email: "alice@penguin.com",
+      phone: "(555) 111-2222",
+      rating: 5,
       terms: "Net 30",
       address: "Publisher District, NY",
       notes: "Reliable publisher with excellent service"
@@ -177,12 +177,12 @@ const App = () => {
           {renderTabContent()}
         </main>
       </div>
-      
+
       {loading && <LoadingSpinner />}
       {notification.show && (
-        <Notification 
-          message={notification.message} 
-          type={notification.type} 
+        <Notification
+          message={notification.message}
+          type={notification.type}
         />
       )}
       {modal.show && (
