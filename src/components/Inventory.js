@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 const Inventory = ({ books, setBooks, showLoading, hideLoading, showNotification, showModal }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [showLowStockOnly, setShowLowStockOnly] = useState(false);
   const [editingBook, setEditingBook] = useState(null);
   const [bookForm, setBookForm] = useState({
     title: '',
@@ -18,11 +20,16 @@ const Inventory = ({ books, setBooks, showLoading, hideLoading, showNotification
   const categories = ['Fiction', 'Non-Fiction', 'Science', 'Technology', 'History', 'Biography', 'Children', 'Educational'];
   const suppliers = ['Penguin Books', 'HarperCollins', 'Random House', 'Macmillan', 'Local Supplier'];
 
-  const filteredBooks = books.filter(book =>
-    book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    book.isbn.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredBooks = books.filter(book => {
+    const matchesSearch =
+      book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      book.isbn.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || book.category === selectedCategory;
+    const matchesStock = !showLowStockOnly || book.stock < 10;
+
+    return matchesSearch && matchesCategory && matchesStock;
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -117,16 +124,39 @@ const Inventory = ({ books, setBooks, showLoading, hideLoading, showNotification
     <div>
       <h2 style={{ marginBottom: '25px', color: '#333' }}>📖 Inventory Management</h2>
       
-      {/* Search Bar */}
-      <div className="search-container">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Search books by title, author, or ISBN..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <span className="search-icon">🔍</span>
+      {/* Search & Filter Controls */}
+      <div style={{ display: 'flex', gap: '15px', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap' }}>
+        <div className="search-container" style={{ flex: 1, minWidth: '250px', marginBottom: 0 }}>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search books by title, author, or ISBN..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <span className="search-icon">🔍</span>
+        </div>
+
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          style={{ padding: '12px 15px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '0.95rem', background: 'white' }}
+        >
+          <option value="All">All Categories</option>
+          {categories.map((cat, i) => (
+            <option key={i} value={cat}>{cat}</option>
+          ))}
+        </select>
+
+        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: '0.9rem', fontWeight: 500, userSelect: 'none' }}>
+          <input
+            type="checkbox"
+            checked={showLowStockOnly}
+            onChange={(e) => setShowLowStockOnly(e.target.checked)}
+            style={{ width: '16px', height: '16px', cursor: 'pointer' }}
+          />
+          ⚠️ Low Stock Only (&lt;10)
+        </label>
       </div>
 
       {/* Add/Edit Book Form */}
