@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  background: #ecf0f1;
+}
+.App {
+  text-align: center;
+  padding: 20px;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+}
+input, select, textarea {
+  font-family: inherit;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header {
+  background: #2c3e50;
+  color: white;
+  padding: 10px 0;
+}
+.header h1 {
+  margin: 0;
+}
+.footer {
+  background: #2c3e50;
+  color: white;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+.footer p {
+  margin: 0;
+}
+.main {
+  padding: 20px;
+}
+.button-primary {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+.button-primary:hover {
+  background: #2980b9;
+}
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 15px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.card h2 {
+  margin-top: 0;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #3498db;
+  outline: none;
+}
+.navbar {
+  background: #34495e;
+  padding: 10px 0;
+}
+.navbar a {
+  color: white;
+  margin: 0 15px;
+}
+.navbar a:hover {
+  text-decoration: underline;
+}
+.list {
+  list-style: none;
+  padding: 0;
+}
+.list-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.list-item:last-child {
+  border-bottom: none;
+}
+.list-item:hover {
+  background: #f9f9f9;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 500px;
+  max-width: 90%;
+}
+.modal-header {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+.cart-item:last-child {
+  border-bottom: none;
+}
+.cart-item img {
+  max-width: 50px;
+  margin-right: 15px;
+}
+.cart-item-details {
+  flex: 1;
+}
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+}
+.cart-item-actions button {
+  margin-left: 10px;
+}
+.cart-total {
+  text-align: right;
+  font-size: 1.2em;
+  margin-top: 15px;
+}
+.cart-checkout {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.cart-checkout:hover {
+  background: #219150;
+}
+.cart-empty {
+  text-align: center;
+  padding: 50px 0;
+  font-size: 1.2em;
+}

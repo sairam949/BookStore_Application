@@ -52,13 +52,18 @@ bookstore-application/
 
 ### Prerequisites
 
-Ensure you have **Node.js** (v14.0.0 or higher) and **npm** installed on your system.
+Ensure you have **Node.js** (v14.0.0 or higher) and **npm** installed on your system:
+```bash
+node -v
+npm -v
+```
 
 ### Installation
 
 1. Clone or navigate to the repository directory:
    ```bash
-   cd bookstore-application
+   git clone https://github.com/sairam949/BookStore_Application.git
+   cd BookStore_Application
    ```
 
 2. Install dependencies:
@@ -89,7 +94,14 @@ In the project directory, you can run:
 
 ---
 
+## 👨‍💻 Author
+
+**Sai Ram**  
+📎 GitHub: [sairam949](https://github.com/sairam949)  
+🎓 RVR & JC College of Engineering — B.Tech (CSE - Data Science)
+
+---
+
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
-
+This project is open-source and available under the [MIT License](LICENSE).
