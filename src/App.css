@@ -1,0 +1,677 @@
+/* App.css - Main CSS file for React Bookstore Management System */
+
+/* PHASE 1: CSS FOUNDATION & DESIGN SYSTEM */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --success-gradient: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+  --danger-gradient: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  --warning-gradient: linear-gradient(135deg, #ffd93d 0%, #ff9f43 100%);
+  --info-gradient: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+  --shadow-light: 0 8px 32px rgba(0,0,0,0.1);
+  --shadow-heavy: 0 20px 60px rgba(0,0,0,0.15);
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--primary-gradient);
+  min-height: 100vh;
+  color: #333;
+  line-height: 1.6;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* PHASE 2: HEADER & NAVIGATION DESIGN */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  background: linear-gradient(45deg, #fff, #f0f8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header .subtitle {
+  font-size: 1.3rem;
+  opacity: 0.95;
+  margin-bottom: 20px;
+}
+
+.header .phase-indicator {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+}
+
+.nav-tabs {
+  display: flex;
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 6px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow-light);
+  overflow-x: auto;
+  backdrop-filter: blur(20px);
+}
+
+.nav-tab {
+  flex: 1;
+  min-width: 120px;
+  padding: 15px 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: var(--transition);
+  white-space: nowrap;
+  position: relative;
+}
+
+.nav-tab:hover {
+  background: #f8f9ff;
+  transform: translateY(-1px);
+}
+
+.nav-tab.active {
+  background: var(--primary-gradient);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* PHASE 3: CONTENT LAYOUT & ANIMATIONS */
+.main-content {
+  background: rgba(255,255,255,0.95);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: var(--shadow-heavy);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.2);
+  animation: slideInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* PHASE 4: FORM COMPONENTS & INPUT DESIGN */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+input, select, textarea {
+  padding: 14px 18px;
+  border: 2px solid #e0e6ed;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: var(--transition);
+  background: rgba(255,255,255,0.9);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+  background: white;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* PHASE 5: BUTTON SYSTEM & INTERACTIONS */
+.btn {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  margin: 5px;
+  display: inline-block;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.btn-danger {
+  background: var(--danger-gradient);
+  color: white;
+}
+
+.btn-success {
+  background: var(--success-gradient);
+  color: white;
+}
+
+.btn-warning {
+  background: var(--warning-gradient);
+  color: white;
+}
+
+.btn-info {
+  background: var(--info-gradient);
+  color: white;
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+/* PHASE 6: DATA TABLES & GRID SYSTEMS */
+.table-container {
+  overflow-x: auto;
+  margin-top: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  background: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th, td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #e0e6ed;
+  transition: var(--transition);
+}
+
+th {
+  background: var(--primary-gradient);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+tbody tr:hover {
+  background: #f8f9ff;
+  transform: scale(1.01);
+}
+
+tbody tr {
+  transition: var(--transition);
+}
+
+.table-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* PHASE 7: STATISTICS & DASHBOARD CARDS */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: var(--shadow-light);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--primary-gradient);
+}
+
+.stat-card:hover {
+  transform: translateY(-8px) rotate(1deg);
+  box-shadow: var(--shadow-heavy);
+}
+
+.stat-value {
+  font-size: 3rem;
+  font-weight: bold;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* PHASE 8: ADVANCED UI COMPONENTS */
+.search-container {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 50px 15px 20px;
+  border: 2px solid #e0e6ed;
+  border-radius: 25px;
+  font-size: 16px;
+  transition: var(--transition);
+  background: rgba(255,255,255,0.9);
+}
+
+.search-input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: white;
+}
+
+.search-icon {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.alert {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin: 15px 0;
+  font-weight: 500;
+  border-left: 4px solid;
+  animation: slideInRight 0.4s ease;
+}
+
+.alert-success {
+  background: rgba(81, 207, 102, 0.1);
+  color: #2d7738;
+  border-left-color: #51cf66;
+}
+
+.alert-danger {
+  background: rgba(255, 107, 107, 0.1);
+  color: #c92a2a;
+  border-left-color: #ff6b6b;
+}
+
+.alert-warning {
+  background: rgba(255, 217, 61, 0.1);
+  color: #e67700;
+  border-left-color: #ffd93d;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: var(--shadow-heavy);
+  animation: modalSlideIn 0.4s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Loading Spinner */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(102, 126, 234, 0.3);
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Notification */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  background: var(--success-gradient);
+  color: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
+  z-index: 1001;
+  animation: slideInFromRight 0.4s ease;
+}
+
+.notification.danger {
+  background: var(--danger-gradient);
+}
+
+.notification.warning {
+  background: var(--warning-gradient);
+}
+
+.notification.info {
+  background: var(--info-gradient);
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Card Grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.book-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+  border: 1px solid #e0e6ed;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-heavy);
+}
+
+.book-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.book-author {
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.book-price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.stock-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.stock-high {
+  background: rgba(81, 207, 102, 0.2);
+  color: #2d7738;
+}
+
+.stock-medium {
+  background: rgba(255, 217, 61, 0.2);
+  color: #e67700;
+}
+
+.stock-low {
+  background: rgba(255, 107, 107, 0.2);
+  color: #c92a2a;
+}
+
+/* Sale Items */
+.sale-item {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: #f8f9ff;
+  border-radius: 8px;
+  border: 1px solid #e0e6ed;
+}
+
+.sale-summary {
+  margin-top: 25px;
+  padding: 20px;
+  background: #f8f9ff;
+  border-radius: 8px;
+}
+
+/* PHASE 9: RESPONSIVE DESIGN & MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .header h1 {
+    font-size: 2.2rem;
+  }
+
+  .nav-tabs {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .nav-tab {
+    text-align: center;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 12px 8px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  .header .subtitle {
+    font-size: 1rem;
+  }
+
+  .stat-value {
+    font-size: 2.2rem;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
