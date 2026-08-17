@@ -96,7 +96,22 @@ const Settings = ({ showNotification }) => {
   };
 
   const exportData = () => {
-    showNotification('Data exported successfully!', 'success');
+    const backupPayload = {
+      storeSettings,
+      systemSettings,
+      exportedAt: new Date().toISOString(),
+      version: "1.0.0"
+    };
+
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupPayload, null, 2));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", `bookstore_settings_backup_${new Date().toISOString().split('T')[0]}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+
+    showNotification('Store configuration exported to JSON file successfully!', 'success');
   };
 
   const importData = () => {
