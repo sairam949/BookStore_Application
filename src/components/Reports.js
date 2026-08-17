@@ -136,7 +136,32 @@ const Reports = ({ books, sales, customers, showLoading, hideLoading, showNotifi
   };
 
   const exportReport = () => {
-    showNotification('Report exported to Excel successfully!', 'success');
+    if (!reportData) {
+      showNotification('Please generate a report first before exporting', 'warning');
+      return;
+    }
+
+    let csvContent = `data:text/csv;charset=utf-8,${reportData.type} - ${reportData.period}\n\nMetric,Value\n`;
+    reportData.stats.forEach(s => {
+      csvContent += `"${s.label}","${s.value}"\n`;
+    });
+
+    if (reportData.topBooks) {
+      csvContent += `\nRank,Title,Author,Units Sold,Revenue\n`;
+      reportData.topBooks.forEach(b => {
+        csvContent += `"${b.rank}","${b.title}","${b.author}","${b.unitsSold}","$${b.revenue}"\n`;
+      });
+    }
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `${reportData.type.toLowerCase().replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    showNotification('Report CSV file downloaded successfully!', 'success');
   };
 
   const printReport = () => {
