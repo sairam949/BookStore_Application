@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const Sales = ({ books, setBooks, customers, sales, setSales, showLoading, hideLoading, showNotification }) => {
+  const [discountPercent, setDiscountPercent] = useState(0);
   const [saleForm, setSaleForm] = useState({
     customerSelect: '',
     saleDate: new Date().toISOString().split('T')[0],
@@ -65,14 +66,16 @@ const Sales = ({ books, setBooks, customers, sales, setSales, showLoading, hideL
   };
 
   const calculateTotals = () => {
-    const subtotal = saleItems.reduce((sum, item) => sum + item.subtotal, 0);
+    const rawSubtotal = saleItems.reduce((sum, item) => sum + item.subtotal, 0);
+    const discountAmount = (rawSubtotal * discountPercent) / 100;
+    const subtotal = rawSubtotal - discountAmount;
     const tax = subtotal * 0.08; // 8% tax rate
     const total = subtotal + tax;
     
-    return { subtotal, tax, total };
+    return { rawSubtotal, discountAmount, subtotal, tax, total };
   };
 
-  const { subtotal, tax, total } = calculateTotals();
+  const { rawSubtotal, discountAmount, subtotal, tax, total } = calculateTotals();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -190,6 +193,19 @@ const Sales = ({ books, setBooks, customers, sales, setSales, showLoading, hideL
               {paymentMethods.map(method => (
                 <option key={method} value={method}>{method}</option>
               ))}
+            </select>
+          </div>
+          <div className="form-group">
+            <label>Apply Discount (%)</label>
+            <select
+              value={discountPercent}
+              onChange={(e) => setDiscountPercent(parseFloat(e.target.value))}
+            >
+              <option value={0}>0% - Standard Rate</option>
+              <option value={5}>5% - Member Discount</option>
+              <option value={10}>10% - Student Discount</option>
+              <option value={15}>15% - Seasonal Promotion</option>
+              <option value={20}>20% - VIP Clearance</option>
             </select>
           </div>
         </div>
